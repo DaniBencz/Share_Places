@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 //https://github.com/Agontuk/react-native-geolocation-service
 import Geolocation from 'react-native-geolocation-service';
-
 import { PermissionsAndroid } from 'react-native';
 
 import FetcthLocation from './components/FetchLocation';
@@ -21,32 +20,32 @@ class App extends React.Component {
         console.log(position);
       },
       (error) => {
-        // See error code charts below.
         console.log(error.code, error.message);
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
     );
   }
 
-  async requestCameraPermission() {
+  //hey = () => alert('hey');
+
+  async requestLocationPermission() {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: 'Cool Photo App Camera Permission',
-          message:
-            'Cool Photo App needs access to your camera ' +
-            'so you can take awesome pictures.',
+          title: 'Location Permission',
+          message: 'Please allow app to use zour location!',
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the camera');
-        alert('got it')
+        console.log('location access');
+        this.getUserLocationHandler();
+        //this.hey();
       } else {
-        console.log('Camera permission denied');
+        console.log('location denied');
       }
     } catch (err) {
       alert('nope')
@@ -57,7 +56,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <FetcthLocation onGetLocation={this.requestCameraPermission} />
+        <FetcthLocation onGetLocation={this.requestLocationPermission} />
       </View>
     );
   }
