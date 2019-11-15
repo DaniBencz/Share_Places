@@ -40,7 +40,14 @@ class App extends React.Component {
 
   componentDidMount() { requestLocationPermission(); }
 
+  callback = () => {
+    alert('callback');
+  }
+
   getUserLocationHandler = () => {
+
+    this.callback();
+
     Geolocation.getCurrentPosition(
       (position) => {
         console.log(position);
