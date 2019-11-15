@@ -1,18 +1,29 @@
-//https://www.youtube.com/watch?v=6ZnfsJ6mM5c
+//tutorial: https://www.youtube.com/watch?v=6ZnfsJ6mM5c
 
 import React from 'react';
 import {
   View,
   StyleSheet,
 } from 'react-native';
+//https://github.com/Agontuk/react-native-geolocation-service
+import Geolocation from 'react-native-geolocation-service';
+
 import FetcthLocation from './components/FetchLocation';
 
-const App: () => React$Node = () => {
-  return (
-    <View style={styles.container}>
-      <FetcthLocation onGetLocation={() => alert('malac')} />
-    </View>
-  );
+//use class instead const App: () => React$Node = () => {
+class App extends React.Component {
+
+  getUserLocationHandler = () => {
+    alert('malac')
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <FetcthLocation onGetLocation={this.getUserLocationHandler} />
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
