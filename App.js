@@ -1,4 +1,6 @@
 //tutorial: https://www.youtube.com/watch?v=6ZnfsJ6mM5c
+//maps dependency  https://github.com/react-native-community/react-native-maps/blob/master/docs/installation.md
+//maps dependency issue: https://github.com/react-native-community/react-native-maps/issues/3108
 
 import React from 'react';
 import {
@@ -18,7 +20,7 @@ async function requestLocationPermission() {
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
         title: 'Location Permission',
-        message: 'Please allow app to use zour location!',
+        message: 'Please allow app to use your location!',
         buttonNeutral: 'Ask Me Later',
         buttonNegative: 'Cancel',
         buttonPositive: 'OK',
@@ -37,11 +39,9 @@ async function requestLocationPermission() {
 
 //use class instead const App: () => React$Node = () => {
 class App extends React.Component {
-
   componentDidMount() { requestLocationPermission(); }
 
   getUserLocationHandler = () => {
-
     Geolocation.getCurrentPosition(
       (position) => {
         console.log(position);
