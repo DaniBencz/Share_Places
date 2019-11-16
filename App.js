@@ -9,33 +9,10 @@ import {
 } from 'react-native';
 //https://github.com/Agontuk/react-native-geolocation-service
 import Geolocation from 'react-native-geolocation-service';
-import { PermissionsAndroid } from 'react-native';
 
+import requestLocationPermission from './services/LocationPermission'
 import FetcthLocation from './components/FetchLocation';
-
-//https://stackoverflow.com/questions/45822318/how-do-i-request-permission-for-android-device-location-in-react-native-at-run-t
-async function requestLocationPermission() {
-  try {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Location Permission',
-        message: 'Please allow app to use your location!',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      },
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.log('location access');
-    } else {
-      console.log('location denied');
-    }
-  } catch (err) {
-    alert('nope')
-    console.warn(err);
-  }
-}
+import UsersMap from './components/UsersMap';
 
 //use class instead const App: () => React$Node = () => {
 class App extends React.Component {
@@ -57,6 +34,7 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <FetcthLocation onGetLocation={this.getUserLocationHandler} />
+        <UsersMap />
       </View>
     );
   }
