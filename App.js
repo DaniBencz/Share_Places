@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#ecf0f1',
-    padding: 8,
+    alignItems: "center"
+    /* padding: 8, */
   },
 });
 
