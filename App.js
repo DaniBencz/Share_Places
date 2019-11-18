@@ -34,6 +34,15 @@ class App extends React.Component {
             longitudeDelta: 0.0421,
           }
         })
+        fetch('https://shareplaces-5ae08.firebaseio.com/places.json', {
+          method: 'POST',
+          body: JSON.stringify({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          })
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
       },
       (error) => {
         console.log(error.code, error.message);
