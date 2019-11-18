@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "91562906572",
+    "firebase_url": "https://shareplaces-5ae08.firebaseio.com",
+    "project_id": "shareplaces-5ae08",
+    "storage_bucket": "shareplaces-5ae08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91562906572:android:32d092d0680ed145e08369",
+        "android_client_info": {
+          "package_name": "com.shareplaces"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91562906572-3jq2ta64q2f3bl6s7o0vli3vepgjiql8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNbQ2ImnlxtJS0xfaoc-oxonkSo7BrhLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91562906572-3jq2ta64q2f3bl6s7o0vli3vepgjiql8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
