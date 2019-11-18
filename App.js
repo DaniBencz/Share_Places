@@ -16,12 +16,25 @@ import UsersMap from './components/UsersMap';
 
 //use class instead const App: () => React$Node = () => {
 class App extends React.Component {
+
+  state = {
+    userLocation: null
+  }
+
   componentDidMount() { requestLocationPermission(); }
 
   getUserLocationHandler = () => {
     Geolocation.getCurrentPosition(
       (position) => {
-        console.log(position);
+        this.setState({
+          userLocation: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }
+        })
+        console.log(position.coords.latitude);
       },
       (error) => {
         console.log(error.code, error.message);
@@ -34,7 +47,7 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <FetcthLocation onGetLocation={this.getUserLocationHandler} />
-        <UsersMap />
+        <UsersMap userLocation={this.state.userLocation} />
       </View>
     );
   }
