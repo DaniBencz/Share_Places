@@ -34,7 +34,6 @@ class App extends React.Component {
             longitudeDelta: 0.0421,
           }
         })
-        console.log(position.coords.latitude);
       },
       (error) => {
         console.log(error.code, error.message);

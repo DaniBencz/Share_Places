@@ -5,7 +5,7 @@ import MapView from 'react-native-maps';
 const usersMap = props => {
   let userLocationMarker = null;
   if (props.userLocation) {
-    userLocationMarker = <MapView.Marker coordiante={props.userLocation} />;
+    userLocationMarker = <MapView.Marker coordinate={props.userLocation} />;
   }
 
   return (
