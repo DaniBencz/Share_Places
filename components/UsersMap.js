@@ -29,7 +29,7 @@ const styles = new StyleSheet.create({
   mapContainer: {
     width: '100%',
     height: 400,
-    marginTop: 20,
+    margin: 20,
   },
   map: {
     width: '100%',

@@ -6,6 +6,7 @@ import React from 'react';
 import {
   View,
   StyleSheet,
+  Button
 } from 'react-native';
 //https://github.com/Agontuk/react-native-geolocation-service
 import Geolocation from 'react-native-geolocation-service';
@@ -18,7 +19,8 @@ import UsersMap from './components/UsersMap';
 class App extends React.Component {
 
   state = {
-    userLocation: null
+    userLocation: null,
+    userPlaces: []
   }
 
   componentDidMount() { requestLocationPermission(); }
@@ -41,8 +43,8 @@ class App extends React.Component {
             longitude: position.coords.longitude,
           })
         })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
       },
       (error) => {
         console.log(error.code, error.message);
@@ -51,11 +53,34 @@ class App extends React.Component {
     );
   }
 
+  getUserPlacesHandler = () => {
+    fetch('https://shareplaces-5ae08.firebaseio.com/places.json')
+      .then(res => res.json)
+      .then(parsedRes => console.log('parsedRes ', parsedRes))
+      .then(parsedRes => {
+        const PlacesArray = [];
+        for(const key in parsedRes){
+          PlacesArray.push({
+            latitude: parsedRes[key].latitude,
+            longitude: parsedRes[key].longitude,
+            id: key
+          })
+        }
+        this.setState({
+          userPlaces: PlacesArray
+        }, () => console.log('userPlaces ', this.state.userPlaces))
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <FetcthLocation onGetLocation={this.getUserLocationHandler} />
         <UsersMap userLocation={this.state.userLocation} />
+        <View>
+          <Button title='Get User Places' onPress={this.getUserPlacesHandler}></Button>
+        </View>
       </View>
     );
   }
