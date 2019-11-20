@@ -20,7 +20,7 @@ class App extends React.Component {
 
   state = {
     userLocation: null,
-    userPlaces: []
+    usersPlaces: []
   }
 
   componentDidMount() { requestLocationPermission(); }
@@ -55,8 +55,7 @@ class App extends React.Component {
 
   getUserPlacesHandler = () => {
     fetch('https://shareplaces-5ae08.firebaseio.com/places.json')
-      .then(res => res.json)
-      .then(parsedRes => console.log('parsedRes ', parsedRes))
+      .then(res => res.json())
       .then(parsedRes => {
         const PlacesArray = [];
         for(const key in parsedRes){
@@ -67,8 +66,8 @@ class App extends React.Component {
           })
         }
         this.setState({
-          userPlaces: PlacesArray
-        }, () => console.log('userPlaces ', this.state.userPlaces))
+          usersPlaces: PlacesArray
+        }, () => console.log('usersPlaces ', this.state.usersPlaces))
       })
       .catch(err => console.log(err))
   }
@@ -77,7 +76,7 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <FetcthLocation onGetLocation={this.getUserLocationHandler} />
-        <UsersMap userLocation={this.state.userLocation} />
+        <UsersMap userLocation={this.state.userLocation} usersPlaces={this.state.userPlaces}/>
         <View>
           <Button title='Get User Places' onPress={this.getUserPlacesHandler}></Button>
         </View>
