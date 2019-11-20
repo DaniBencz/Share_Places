@@ -76,7 +76,7 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <FetcthLocation onGetLocation={this.getUserLocationHandler} />
-        <UsersMap userLocation={this.state.userLocation} usersPlaces={this.state.userPlaces}/>
+        <UsersMap userLocation={this.state.userLocation} usersPlaces={this.state.usersPlaces}/>
         <View>
           <Button title='Get User Places' onPress={this.getUserPlacesHandler}></Button>
         </View>
